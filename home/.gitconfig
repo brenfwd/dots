@@ -1,8 +1,10 @@
+[include]
+	path = ~/.gitconfig.local
+
 [user]
 	name = Brenden Forward
 	email = 44183550+brenfwd@users.noreply.github.com
-	# 1password SSH key
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIt+PJMj9Eo9M1+5Tvc/1HNxkn6Rnp3OSk3adzgzBLHm
+	# set signingKey in ~/.gitconfig.local
 
 [gpg]
 	format = ssh

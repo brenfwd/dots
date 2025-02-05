@@ -12,6 +12,9 @@ alias gcm='git commit -m'
 alias gpush='git push'
 alias gpull='git pull'
 
+alias py='python3'
+alias python='python3'
+
 # https://bash-prompt-generator.org/
 export GIT_PS1_SHOWDIRTYSTATE=1
 source "$HOME/git-prompt.sh"
@@ -20,3 +23,4 @@ export PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 " (%s)")'; PS1='\[\e[38;5;247m\]\u\[
 # Load ~/.bashrc.local for local overrides
 # Things like path overrides for programs should be moved here...
 [ -s "$HOME/.bashrc.local" ] && \. "$HOME/.bashrc.local"
+
