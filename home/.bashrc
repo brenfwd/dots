@@ -1,7 +1,7 @@
 export PATH="$HOME/.local/bin:$PATH"
 
 alias ..='cd ..'
-alias ls='ls --color=auto'
+alias ls='ls --color'
 alias l='ls'
 alias ll='ls -lh'
 alias la='ls -lha'
