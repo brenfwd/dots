@@ -17,3 +17,6 @@
 
 [init]
 	defaultBranch = main
+
+[gpg "ssh"]
+	allowedSignersFile = ~/.config/git/allowed_signers
