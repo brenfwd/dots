@@ -17,7 +17,7 @@ alias python='python3'
 
 # https://bash-prompt-generator.org/
 export GIT_PS1_SHOWDIRTYSTATE=1
-source "$HOME/git-prompt.sh"
+source "$HOME/.git-prompt.sh"
 export PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 " (%s)")'; PS1='\[\e[38;5;247m\]\u\[\e[0m\] \[\e[38;5;39m\]\h\[\e[0m\] \w\[\e[2m\]${PS1_CMD1}\[\e[0m\] \[\e[38;5;39m\]\$\[\e[0m\] '
 
 # Load ssh-agent and add default key
