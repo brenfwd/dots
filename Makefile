@@ -1,5 +1,5 @@
 STOW := stow -v -d . -t ~
-PACKAGES := bash git ssh
+PACKAGES := bash git ssh nvim
 
 install:
 	$(STOW) $(PACKAGES)
