@@ -1,5 +1,5 @@
 STOW := stow -v -d . -t ~
-PACKAGES := bash git ssh nvim
+PACKAGES := bash git ssh nvim fonts
 
 install:
 	$(STOW) $(PACKAGES)
@@ -13,3 +13,4 @@ uninstall:
 findbroken:
 	find ~ -xtype l
 .PHONY: findbroken
+
