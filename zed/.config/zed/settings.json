@@ -13,11 +13,20 @@
     },
     "buffer_font_family": "JetBrainsMono Nerd Font",
     "ui_font_size": 16,
+    "ui_font_family": "JetBrainsMono Nerd Font",
     "buffer_font_size": 16,
     "theme": {
         "mode": "system",
         "light": "macOS Classic Light",
         "dark": "VSCode Dark Polished"
+    },
+    "show_whitespaces": "boundary",
+    "experimental.theme_overrides": {
+        "editor.background": "#0b0b0b",
+        "players": [
+            { "cursor": "#00dd00" }
+        ],
+        "editor.active_line_number": "#ffff00"
     },
     // ----- Formatting / code style -----
     "tab_size": 4,
@@ -39,13 +48,12 @@
             "binary": {
                 "path_lookup": true,
                 "path": "clangd",
-                "arguments": ["--header-insertion=never"]
+                "arguments": ["--header-insertion=never", "--background-index"]
             }
         }
     },
-    "auto_signature_help": true,
-    "inlay_hints": {
-        "enabled": true
+    "tabs": {
+        "file_icons": true
     },
     // ----- Disable AI -----
     "edit_predictions": {
