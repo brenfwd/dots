@@ -1,5 +1,5 @@
 STOW := stow -v -d . -t ~
-PACKAGES := bash nvim fonts zed
+PACKAGES := bash nvim fonts tmux zed
 
 install:
 	$(STOW) $(PACKAGES)
