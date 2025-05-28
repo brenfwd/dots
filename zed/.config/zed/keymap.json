@@ -16,7 +16,9 @@
     "context": "Editor",
     "bindings": {
       // "j k": ["workspace::SendKeystrokes", "escape"]
-      "g A": "editor::FindAllReferences"
+      "g A": "editor::FindAllReferences",
+      "g [": "pane::GoBack",
+      "g ]": "pane::GoForward"
     }
   }
 ]
