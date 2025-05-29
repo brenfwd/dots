@@ -15,6 +15,12 @@ vim.opt.ts = 4
 -- disable search highlighting
 vim.opt.hls = false
 
+-- always show tab bar
+vim.o.showtabline = 2
+
+-- set scrolloff (lines of padding at top and bottom)
+vim.opt.scrolloff = 2
+
 ---------- [ TERMINAL ] ----------
 
 -- set terminal behavior to be somewhat sane
@@ -75,24 +81,6 @@ require("config.lazy")
 local telescope = require('telescope.builtin')
 
 -- nvim-tree: file browser/sidebar
-local function my_on_attach(bufnr)
-    local api = require("nvim-tree.api")
-    
-    local function opts(desc)
-        return {
-            desc = "nvim-tree: " .. desc,
-            buffer = bufnr,
-            noremap = true,
-            silent = true,
-            nowait = true,
-        }
-    end
-
-    api.config.mappings.default_on_attach(bufnr)
-
-    -- custom nvim-tree keybinds
-    -- ...
-end
 require("nvim-tree").setup({
     disable_netrw = false,
     hijack_netrw = true,
@@ -100,7 +88,12 @@ require("nvim-tree").setup({
 
 -- tabby
 local tabby = require("tabby")
-tabby.setup()
+tabby.setup({
+    preset = 'active_wins_at_tail',
+    option = {
+        lualine_theme = 'powerline_dark',
+    },
+})
 
 -- nvim-possession
 vim.cmd('set ssop+=curdir')
@@ -113,31 +106,84 @@ poss.setup({
 local lualine = require('lualine')
 lualine.setup({
     options = {
-        theme = 'ayu_dark',
+        theme = 'powerline_dark',
     },
     sections = {
         lualine_c = {
-            { "filename", path = 1 },
             {
                 poss.status,
                 cond = function()
                     return poss.status() ~= nil
                 end
             },
+            { "filename", path = 4 },
         },
     },
 })
 
+-- toggleterm
+local toggleterm = require('toggleterm')
+toggleterm.setup({
+    multiwindow = true,
+})
+
+-- ts-context
+-- local tscontext = require('treesitter-context')
+-- tscontext.setup({
+--     enable = true,
+--     multiwindow = true,
+--     mode = 'topline',
+-- })
+
+
 ---------- [   LSP    ] ----------
 
-vim.lsp.enable('clangd')
-vim.lsp.config('clangd', {
+local coq = require('coq')
+
+-- see: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
+vim.lsp.config('lua_ls', {
+    on_init = function(client)
+        if client.workspace_folders then
+            local path = client.workspace_folders[1].name
+            if
+                path ~= vim.fn.stdpath('config')
+                and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+            then
+                return
+            end
+        end
+
+        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+            runtime = {
+                version = 'LuaJIT',
+                path = {
+                    'lua/?.lua',
+                    'lua/?/init.lua',
+                },
+            },
+            -- Make the server aware of Neovim runtime files
+            workspace = {
+                checkThirdParty = false,
+                library = {
+                    vim.env.VIMRUNTIME
+                }
+            }
+        })
+    end,
+    settings = {
+        Lua = {}
+    }
+})
+vim.lsp.enable('lua_ls')
+
+vim.lsp.config('clangd', coq.lsp_ensure_capabilities({
     cmd = {
         'clangd',
         '--header-insertion=never',
         '--background-index',
     },
-})
+}))
+vim.lsp.enable('clangd')
 
 -- enable error diagnostics inline
 vim.diagnostic.config({
@@ -166,14 +212,16 @@ vim.keymap.set('n', '<Leader>t0', '10gt')
 vim.keymap.set('n', '<Leader>ww', '<C-w><C-w>')
 
 -- lsp keybinds
-vim.keymap.set('n', '<Leader> ',  vim.lsp.buf.completion)
-vim.keymap.set('n', '<Leader>g.', vim.lsp.buf.code_action)
-vim.keymap.set('n', '<Leader>gr', vim.lsp.buf.rename)
-vim.keymap.set('n', '<Leader>gA', vim.lsp.buf.references)
-vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition)
+vim.keymap.set('n', 'g.', vim.lsp.buf.code_action)
+vim.keymap.set('n', 'gr', vim.lsp.buf.rename)
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+vim.keymap.set('n', 'gh', vim.lsp.buf.hover)
 
 -- telescope
 vim.keymap.set('n', '<Leader>ff', telescope.find_files)
+vim.keymap.set('n', '<Leader>fr', telescope.lsp_references)
+vim.keymap.set('n', '<Leader>fs', telescope.lsp_workspace_symbols)
+vim.keymap.set('n', '<Leader>fg', telescope.live_grep)
 
 -- nvim-tree (editor)
 -- note: nvim-tree mode keybinds appear above!
