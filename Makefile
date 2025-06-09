@@ -1,5 +1,5 @@
 STOW := stow -v -d . -t ~
-PACKAGES := bash nvim fonts tmux zed
+PACKAGES := bash nvim fonts tmux zed fish
 
 install:
 	$(STOW) $(PACKAGES)
