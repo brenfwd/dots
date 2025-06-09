@@ -12,8 +12,19 @@ vim.opt.smarttab = true
 vim.opt.sw = 4
 vim.opt.ts = 4
 
--- disable search highlighting
-vim.opt.hls = false
+-- adjust search settings
+--vim.opt.hls = false
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- highlight trailing whitespace
+vim.cmd('hi EoLSpace ctermbg=238 guibg=#333333')
+vim.api.nvim_create_autocmd({'BufWinEnter', 'WinEnter'}, {
+    pattern = '*',
+    callback = function()
+        vim.cmd('match EoLSpace /\\s\\+$/')
+    end
+})
 
 -- always show tab bar
 vim.o.showtabline = 2
