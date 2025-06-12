@@ -1,6 +1,8 @@
 STOW := stow -v -d . -t ~
 PACKAGES := bash nvim fonts tmux zed fish
 
+FIND_BIN ?= find
+
 install:
 	$(STOW) $(PACKAGES)
 .PHONY: install
@@ -11,6 +13,6 @@ uninstall:
 
 # Lists all broken symlinks in home dir
 findbroken:
-	find ~ -xtype l
+	$(FIND_BIN) ~ -xtype l
 .PHONY: findbroken
 
