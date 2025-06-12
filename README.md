@@ -10,3 +10,13 @@ Feel free to fork this repo and change it to your liking for your own configurat
 1. Run `~/dots/apply`
 
 If you have local files that conflict with those in the repo (very likely), you can pass the `-f` flag to `apply` which will rename those files with a `.bkp` on the end and apply these files instead.
+
+## Manual Setup
+
+- **`fish`**
+    - `fisher`
+    - `tide`
+    - `eza`
+    - `fzf`
+    - `zoxide`
+
