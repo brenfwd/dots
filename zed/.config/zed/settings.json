@@ -1,0 +1,79 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+    // ----- Styling -----
+    "outline_panel": {
+        "dock": "right"
+    },
+    "buffer_font_family": "JetBrainsMono Nerd Font",
+    "ui_font_size": 16,
+    "ui_font_family": "JetBrainsMono Nerd Font",
+    "buffer_font_size": 16,
+    "theme": {
+        "mode": "system",
+        "light": "macOS Classic Light",
+        "dark": "VSCode Dark Polished"
+    },
+    "show_whitespaces": "boundary",
+    "experimental.theme_overrides": {
+        "editor.background": "#0b0b0b",
+        "players": [
+            { "cursor": "#00dd00" }
+        ],
+        "editor.active_line_number": "#ffff00"
+    },
+    // ----- Formatting / code style -----
+    "tab_size": 4,
+    "hard_tabs": false,
+    "format_on_save": "off",
+    "remove_trailing_whitespace_on_save": false,
+    "use_on_type_format": false,
+    "ensure_final_newline_on_save": false,
+    // ----- Vim mode / keybindings -----
+    "base_keymap": "VSCode",
+    "vim_mode": true,
+    "vim": {
+        "toggle_relative_line_numbers": true,
+        "use_system_clipboard": "on_yank"
+    },
+    // ----- LSP / editor settings -----
+    "lsp": {
+        "clangd": {
+            "binary": {
+                "path_lookup": true,
+                "path": "clangd",
+                "arguments": ["--header-insertion=never", "--background-index"]
+            }
+        }
+    },
+    "tabs": {
+        "file_icons": true
+    },
+    // ----- Disable AI -----
+    "edit_predictions": {
+        "enabled_in_text_threads": false,
+        "disabled_globs": ["*", "*.*", "**/*", "**/*.*"]
+    },
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false
+    },
+    "auto_update": false,
+    "agent": {
+        "version": "1",
+        "enabled": false,
+        "button": false
+    },
+    "toolbar": {
+        "agent_review": false
+    },
+    "features": {
+        "edit_prediction_provider": "none"
+    }
+}
