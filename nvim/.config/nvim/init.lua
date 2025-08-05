@@ -135,7 +135,11 @@ lualine.setup({
 -- toggleterm
 local toggleterm = require('toggleterm')
 toggleterm.setup({
+    open_mapping = [[<c-`>]],
+    hide_numbers = true,
     multiwindow = true,
+    size = 25,
+    close_on_exit = true,
 })
 
 -- ts-context
