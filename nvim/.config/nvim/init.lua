@@ -250,3 +250,5 @@ vim.keymap.set('n', '<Leader>sn', poss.new)
 vim.keymap.set('n', '<Leader>su', poss.update)
 vim.keymap.set('n', '<Leader>sd', poss.delete)
 
+-- terminal normal mode
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>')
