@@ -42,19 +42,83 @@ return {
         config = true,
     },
     {
-        'ms-jpq/coq_nvim',
-        branch = 'coq',
+        'hrsh7th/nvim-cmp',
+        tag = 'v0.0.2',
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
+        },
         init = function()
-            vim.g.coq_settings = {
-                auto_start = 'shut-up',
-            }
-        end
-    },
-    {
-        'ms-jpq/coq.artifacts',
-        branch = 'artifacts',
+            local has_words_before = function()
+                unpack = unpack or table.unpack
+                local cur = vim.api.nvim_win_get_cursor(0)
+                local line, col = unpack(cur)
+                return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+            end -- has_words_before
+
+            local cmp = require('cmp')
+
+            cmp.setup({
+                snippet = {
+                    expand = function(args)
+                        vim.snippet.expand(args.body)
+                    end, -- expand
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ['<C-Space'] = cmp.mapping.complete(),
+
+                    ['<C-e>'] = cmp.mapping.abort(),
+
+                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+
+                    ['<Tab>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                            -- cmp.confirm({ select = true })
+                        elseif vim.snippet.active({ direction = 1 }) then
+                            vim.schedule(function()
+                                vim.snippet.jump(1)
+                            end)
+                        elseif has_words_before() then
+                            cmp.complete()
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 's' }), -- <Tab>
+
+                    ['<S-Tab>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif vim.snippet.active({ direction = -1 }) then
+                            vim.schedule(function()
+                                vim.snippet.jump(-1)
+                            end)
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 's' }), -- <S-Tab>
+                }),
+                sources = {
+                    { name = 'nvim_lsp' },
+                    { name = 'buffer' },
+                },
+            })
+        end, -- init
     },
     -- {
+    --     'ms-jpq/coq_nvim',
+    --     branch = 'coq',
+    --     init = function()
+    --         vim.g.coq_settings = {
+    --             auto_start = 'shut-up',
+    --         }
+    --     end
+    -- },
+    -- {
+    --     'ms-jpq/coq.artifacts',
+    --     branch = 'artifacts',
+    -- },
+    -- {
+
     --     'nvim-treesitter/nvim-treesitter-context',
     --     dependencies = {
     --         {

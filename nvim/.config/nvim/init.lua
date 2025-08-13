@@ -153,7 +153,7 @@ toggleterm.setup({
 
 ---------- [   LSP    ] ----------
 
-local coq = require('coq')
+-- local coq = require('coq')
 
 -- see: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
 vim.lsp.config('lua_ls', {
@@ -191,14 +191,16 @@ vim.lsp.config('lua_ls', {
 })
 vim.lsp.enable('lua_ls')
 
-vim.lsp.config('clangd', coq.lsp_ensure_capabilities({
+vim.lsp.config('clangd', {
     cmd = {
         'clangd',
         '--header-insertion=never',
         '--background-index',
     },
-}))
+})
 vim.lsp.enable('clangd')
+
+vim.lsp.enable('zls')
 
 -- enable error diagnostics inline
 vim.diagnostic.config({
