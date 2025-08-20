@@ -4,7 +4,7 @@ if status is-interactive
     fish_vi_key_bindings
 
     if type -q eza
-        alias ls 'eza --icons'
+        alias ls 'eza --icons --group-directories-first'
     end
 end
 
