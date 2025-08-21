@@ -23,8 +23,8 @@ end
 # abbrs
 
 abbr -a l ls
-abbr -a ll ls -lh
-abbr -a la ls -lha
+abbr -a ll ls -l
+abbr -a la ls -la
 
 abbr -a gs git status
 abbr -a gaa git add -Av
