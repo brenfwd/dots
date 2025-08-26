@@ -32,6 +32,10 @@ vim.o.showtabline = 2
 -- set scrolloff (lines of padding at top and bottom)
 vim.opt.scrolloff = 2
 
+-- enable modelines (!!!)
+vim.opt.modeline = true
+vim.opt.modelines = 10
+
 ---------- [ TERMINAL ] ----------
 
 -- set terminal behavior to be somewhat sane
@@ -201,6 +205,11 @@ vim.lsp.config('clangd', {
 vim.lsp.enable('clangd')
 
 vim.lsp.enable('zls')
+
+vim.lsp.enable('pylsp')
+
+-- npm install -g @vtsls/language-server
+vim.lsp.enable('vtsls')
 
 -- enable error diagnostics inline
 vim.diagnostic.config({
