@@ -135,7 +135,7 @@ lualine.setup({
 -- toggleterm
 local toggleterm = require('toggleterm')
 toggleterm.setup({
-    open_mapping = [[<c-`>]],
+    open_mapping = [[<C-Space>]],
     hide_numbers = true,
     multiwindow = true,
     size = 25,
@@ -252,3 +252,4 @@ vim.keymap.set('n', '<Leader>sd', poss.delete)
 
 -- terminal normal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>')
+
