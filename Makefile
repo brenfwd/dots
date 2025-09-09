@@ -1,5 +1,5 @@
 STOW := stow -v -d . -t ~
-PACKAGES := bash nvim fonts tmux fish
+PACKAGES := bash nvim tmux fish
 
 FIND_BIN ?= find
 
