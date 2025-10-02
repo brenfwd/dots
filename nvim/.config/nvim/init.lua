@@ -9,8 +9,8 @@ vim.opt.autoindent = true
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.smarttab = true
-vim.opt.sw = 4
-vim.opt.ts = 4
+vim.opt.sw = 2
+vim.opt.ts = 2
 
 -- adjust search settings
 --vim.opt.hls = false
@@ -238,10 +238,12 @@ vim.keymap.set('n', '<Leader>t0', '10gt')
 vim.keymap.set('n', '<Leader>ww', '<C-w><C-w>')
 
 -- lsp keybinds
-vim.keymap.set('n', 'g.', vim.lsp.buf.code_action)
-vim.keymap.set('n', 'gr', vim.lsp.buf.rename)
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gh', vim.lsp.buf.hover)
+vim.keymap.set('n', '<Leader>la', vim.lsp.buf.code_action) -- [l]sp [a]ction
+vim.keymap.set('n', '<Leader>lf', vim.lsp.buf.format) -- [l]sp [f]ormat
+vim.keymap.set('n', '<Leader>lh', vim.diagnostic.open_float) -- [l]sp [h]over
+vim.keymap.set('n', '<Leader>lr', vim.lsp.buf.rename) -- [l]sp [r]ename
 
 -- telescope
 vim.keymap.set('n', '<Leader>ff', telescope.find_files)
