@@ -104,6 +104,22 @@ return {
             })
         end, -- init
     },
+    {
+      "Isrothy/neominimap.nvim",
+      version = "v3.x.x",
+      lazy = false,
+      init = function()
+        -- The following options are recommended when layout == "float"
+        vim.opt.wrap = false
+        vim.opt.sidescrolloff = 36 -- Set a large value
+
+        --- Put your configuration here
+        ---@type Neominimap.UserConfig
+        vim.g.neominimap = {
+          auto_enable = true,
+        }
+      end,
+    },
     -- {
     --     'ms-jpq/coq_nvim',
     --     branch = 'coq',
@@ -117,16 +133,15 @@ return {
     --     'ms-jpq/coq.artifacts',
     --     branch = 'artifacts',
     -- },
-    -- {
-
-    --     'nvim-treesitter/nvim-treesitter-context',
-    --     dependencies = {
-    --         {
-    --             'nvim-treesitter/nvim-treesitter',
-    --             branch = 'main',
-    --             build = ':TSUpdate',
-    --             lazy = false,
-    --         },
-    --     },
-    -- },
+    {
+        'nvim-treesitter/nvim-treesitter-context',
+        dependencies = {
+            {
+                'nvim-treesitter/nvim-treesitter',
+                branch = 'main',
+                build = ':TSUpdate',
+                lazy = false,
+            },
+        },
+    },
 }
