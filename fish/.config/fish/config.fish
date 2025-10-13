@@ -57,3 +57,7 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 
+
+function bmosh -a target
+  mosh $target -- tmux new -A -s main
+end
