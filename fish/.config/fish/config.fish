@@ -55,9 +55,12 @@ end
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
+# iTerm
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 
-
+# tmux / mosh
+abbr -a bmux tmux new -A -s main
 function bmosh -a target
   mosh $target -- tmux new -A -s main
 end
+

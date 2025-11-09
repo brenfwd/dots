@@ -264,7 +264,6 @@ vim.keymap.set('n', '<Leader>sd', poss.delete)
 -- terminal normal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>')
 
-
 ---------- [ NEOVIDE ] ----------
 -- Settings for the Neovide GUI
 if vim.g.neovide then
@@ -273,3 +272,4 @@ if vim.g.neovide then
   vim.g.neovide_normal_opacity = 0.9
   vim.g.neovide_background_color = "#6e3ba8cc"
 end
+
